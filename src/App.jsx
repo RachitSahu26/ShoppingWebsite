@@ -13,26 +13,29 @@ import Home from './Pages/Home/Home';
 import MyState from './Contexts/Data/MyState';
 import Login from './Pages/Registration/Login';
 import Signup from './Pages/Registration/Signup';
+// import ProductCard from './Components/ProductCard/ProductCard';
 
 function App() {
   return (
 
-<MyState>
+    <MyState>
 
-    <Router>
-      <Routes>
+      <Router>
+        <Routes>
 
-        <Route path='/' element={<Home />} />
-        <Route path='/admin' element={<DashBorad />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/allProduct' element={<AllProduct />} />
-        <Route path='/order' element={<Order />} />
-        <Route path='/login' element={<Login/>} />
-       <Route path='/sigup' element={<Signup/>} />
-       <Route path='/*' element={<NoPage />} />  
+          <Route path='/' element={<Home />} />
+          <Route path='/admin' element={<DashBorad />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/allProduct' element={<AllProduct />} />
+          <Route path='/order' element={<Order />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/sigup' element={<Signup />} />
+          <Route path='/' element={<NoPage />} />
+          {/* <Route path="/productinfo" element={<ProductCard />} /> */}
+          {/* <Route path='/*' element={<NoPage />} />   */}
 
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
     </MyState>
 
 

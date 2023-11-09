@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 // import myContext from '../../Contexts/Data/MyContext'
 // import { BsFillMoonFill } from 'react-icons/bs';
 // const contex=useContext(myContext)
@@ -20,10 +21,16 @@ function NavBar() {
 
       </div>
       <div className="hidden sm:flex space-x-4">
-        <a href="#" className="text-white hover:text-gray-300">All Product</a>
-        <a href="#" className="text-white hover:text-gray-300">Cart</a>
-        <a href="#" className="text-white hover:text-gray-300">Order</a>
-        <a href="#" className="text-white hover:text-gray-300">Contact</a>
+      <Link to="/" className="text-white hover:text-gray-300">Home</Link>
+
+        <Link to="/allproduct" className="text-white hover:text-gray-300">All Product</Link>
+        <Link to="/cart" className="text-white hover:text-gray-300">Cart</Link>
+        <Link to="/order" className="text-white hover:text-gray-300">Order</Link>
+        <Link to="/admin" className="text-white hover:text-gray-300">Admin</Link>
+       
+        <Link to="/login" className="text-white hover:text-gray-300">Login</Link>
+        {/* <Link to="/product" className="text-white hover:text-gray-300"></Link> */}
+       
       </div>
       <div className="sm:hidden">
         <button className="text-red">

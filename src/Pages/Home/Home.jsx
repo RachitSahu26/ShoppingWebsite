@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
-import Layout from '../../components/layout/Layout'
+import Layout from '../../Components/LayOut/LayOut'
 import myContext from '../../Contexts/Data/MyContext'
 import HeroSection from '../../Components/HeroSection/HeroSection'
 import Filter from '../../Components/Filter/Filter'
 import ProductCard from '../../Components/ProductCard/ProductCard'
+// import AllProduct from '../All_product/AllProduct'
 
 function Home() {
   const context = useContext(myContext)
@@ -17,7 +18,7 @@ function Home() {
 <Filter/>
 <ProductCard/>
     </Layout>
-  )
+  ) 
 }
 
 export default Home
