@@ -2,14 +2,16 @@ import React from 'react'
 import NavBar from '../NavBar/NavBar'
 import Footer from '../Footer/Footer'
 
-function LayOut() {
+function LayOut( {children}) {
   return (
-
+<>
     <NavBar/>
-    <div>
-      
-    </div>
+    <div className="content">
+        {children}
+      </div>
     <Footer/>
+</>
+
   )
 }
 
