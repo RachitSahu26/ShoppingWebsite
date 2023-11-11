@@ -28,7 +28,7 @@ function NavBar() {
         <Link to="/order" className="text-white hover:text-gray-300">Order</Link>
         <Link to="/admin" className="text-white hover:text-gray-300">Admin</Link>
        
-        <Link to="/login" className="text-white hover:text-gray-300">Login</Link>
+        <Link to="/sigup" className="text-white hover:text-gray-300">Login</Link>
         {/* <Link to="/product" className="text-white hover:text-gray-300"></Link> */}
        
       </div>

@@ -19,8 +19,11 @@ document.body.style.backgroundColor="black"
 }
 
 
+
+
+const {loading,setLoading}=useState(false);
   return (
-    <MyContext.Provider value={{togglebtn,mode}}>
+    <MyContext.Provider value={{togglebtn,mode,loading,setLoading}}>
        {props.children}
     </MyContext.Provider>
   )
