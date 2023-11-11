@@ -13,6 +13,8 @@ import Home from './Pages/Home/Home';
 import MyState from './Contexts/Data/MyState';
 import Login from './Pages/Registration/Login';
 import Signup from './Pages/Registration/Signup';
+import AddProduct from './Pages/Admin/page/AddProduct';
+import UpdateProduct from './Pages/Admin/page/UpdateProduct';
 // import ProductCard from './Components/ProductCard/ProductCard';
 
 function App() {
@@ -30,6 +32,9 @@ function App() {
           <Route path='/order' element={<Order />} />
           <Route path='/login' element={<Login />} />
           <Route path='/sigup' element={<Signup />} />
+          <Route path='/addproduct' element={<AddProduct/>} />
+          <Route path='/updateproduct' element={<UpdateProduct/>} />
+
           <Route path='/' element={<NoPage />} />
           {/* <Route path="/productinfo" element={<ProductCard />} /> */}
           {/* <Route path='/*' element={<NoPage />} />   */}
