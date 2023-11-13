@@ -1,14 +1,38 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import myContext from '../../Contexts/Data/MyContext';
+import { toast } from 'react-toastify';
 const Signup = () => {
+  const [name, setName] = useState('');
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+
+
+  // ..................................using loading through context method........./
+  
+  const context= useContext(myContext);
+  const {loading,setLoading}=context;
+  
   const handleSignup = (e) => {
     e.preventDefault();
     // Implement your signup logic here
   };
+
+
+
+// ......................signup function..........
+
+
+const signup=()=>{
+
+if(name==="" || email==="" || password==="" ) {
+  return  toast.error("all fields are required")
+} 
+
+  // console.log(name,email,password)
+}
 
   return (
     <div className="flex h-screen bg-gray-200">
@@ -30,8 +54,8 @@ const Signup = () => {
               type="text"
               id="name"
               placeholder="Your Name"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
             />
           
@@ -74,6 +98,7 @@ const Signup = () => {
           <button
             className="w-full bg-blue-500 text-white font-semibold p-2 rounded-md hover:bg-blue-600"
             type="submit"
+            onClick={signup}
           >
             Sign Up
           </button>

@@ -16,7 +16,8 @@ import Signup from './Pages/Registration/Signup';
 import AddProduct from './Pages/Admin/page/AddProduct';
 import UpdateProduct from './Pages/Admin/page/UpdateProduct';
 // import ProductCard from './Components/ProductCard/ProductCard';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
 
@@ -24,6 +25,7 @@ function App() {
 
       <Router>
         <Routes>
+
 
           <Route path='/' element={<Home />} />
           <Route path='/admin' element={<DashBorad />} />
@@ -38,8 +40,11 @@ function App() {
           <Route path='/' element={<NoPage />} />
           {/* <Route path="/productinfo" element={<ProductCard />} /> */}
           {/* <Route path='/*' element={<NoPage />} />   */}
-
+      
         </Routes>
+      
+      <ToastContainer/>
+      
       </Router>
     </MyState>
 
