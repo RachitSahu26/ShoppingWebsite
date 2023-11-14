@@ -1,14 +1,42 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import myContext from '../../Contexts/Data/MyContext';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { toast } from 'react-toastify';
+import { auth } from '../../FireBase/FirBase';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+
+
+
+
+
+  const context = useContext(myContext);
+  const { loading, setLoading } = context;
+   const navigate= useNavigate();
+
 
   const handleLogin = (e) => {
     e.preventDefault();
     // Implement your login logic here
   };
 
+
+
+  const Login = async () => {
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password)
+      localStorage.setItem('user', JSON.stringify(result));
+      toast.success("Signup Succesfully");
+    navigate('/')
+    } catch (error) {
+      console.log(error)
+
+    }
+  }
   return (
     <div className="flex h-screen bg-gray-200">
       <div className="m-auto p-6 bg-white rounded-lg shadow-md w-96">
@@ -22,6 +50,7 @@ const Login = () => {
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-400"
               type="email"
               id="email"
+
               placeholder="Your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -48,7 +77,7 @@ const Login = () => {
           >
             Log In
           </button>
-        
+
         </form>
       </div>
     </div>
