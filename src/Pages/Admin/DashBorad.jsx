@@ -9,6 +9,7 @@ import DashTab from './DashTab';
 function  DashBorad() {
     const context = useContext(myContext)
     const { mode} = context
+    // console.log(product);
   return (
 <Layout>
 
