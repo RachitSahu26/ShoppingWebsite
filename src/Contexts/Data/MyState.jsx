@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import MyContext from './MyContext'
-import { QuerySnapshot, Timestamp, collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { QuerySnapshot, Timestamp, addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, setDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { fireDB } from '../../FireBase/FirBase';
 function MyState(props) {
@@ -56,6 +56,10 @@ function MyState(props) {
       const productRef = collection(fireDB, "products")
       await addDoc(productRef, products)
       toast.success("Product Add successfully")
+      setTimeout(() => {
+
+        window.location.href = "/admin"
+      }, 800);
       getProductData()
       // closeModal()
       // setLoading(false)
@@ -73,7 +77,7 @@ function MyState(props) {
   // ..................................getProductData...........
 
 
-  const [product, setProduct ]= useState([])
+  const [product, setProduct] = useState([])
   const getProductData = async () => {
 
 
@@ -86,7 +90,7 @@ function MyState(props) {
         orderBy("time")
       );
 
-     const data= onSnapshot(q, (QuerySnapshot) => {
+      const data = onSnapshot(q, (QuerySnapshot) => {
         let productArray = [];
         QuerySnapshot.forEach((doc) => {
           productArray.push({ ...doc.data(), id: doc.id });
@@ -96,7 +100,7 @@ function MyState(props) {
 
       })
 
-     return ()=> data
+      return () => data
 
 
 
@@ -111,20 +115,59 @@ function MyState(props) {
     getProductData();
   }, []);
 
+// ..........................................edit product functionality............
+const editProduct=(item)=>{
+  setProducts(item)
+}
 
 
 
+// .........................updateProduct..........
+
+  const updateProduct = async (item) => {
+    setLoading(true)
+    try {
+      await setDoc(doc(fireDB, "products", products.id), products);
+      toast.success("Product Updated successfully")
+      getProductData();
+      setLoading(false)
+      window.location.href = '/admin'
+    } catch (error) {
+      setLoading(false)
+      console.log(error)
+    }
+    // setProducts("")
+  }
+
+// ..............................delete product functionality.............
+
+
+const deleteProduct = async (item) => {
+  setLoading(true)
+  try {
+   
+    await deleteDoc(doc(fireDB, "products", item.id));
+    toast.success('Product Deleted successfully')
+    setLoading(false)
+    getProductData()
+  } catch (error) {
+    // toast.success('Product Deleted Falied')
+  
+  }
+}
 
 
 
-
-
-
-
-
-  const { loading, setLoading } = useState(false);
+  const [ loading, setLoading]  = useState(false);
   return (
-    <MyContext.Provider value={{ togglebtn, mode, loading, setLoading, addProduct, products,setProducts, product, setProduct}}>
+    <MyContext.Provider value={{
+      togglebtn, mode,
+      loading, setLoading,
+      products, setProducts,
+      addProduct,
+      product, setProduct,
+      editProduct,deleteProduct,updateProduct
+    }}>
       {props.children}
     </MyContext.Provider>
   )

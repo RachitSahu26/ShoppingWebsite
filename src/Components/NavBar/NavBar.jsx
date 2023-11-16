@@ -54,14 +54,14 @@ function NavBar() {
                 Admin</Link> : ""}
 
           {
-            users?
-             
-            <Link to="" className="text-white hover:text-gray-300" onClick={logOut}>
+            users ?
+
+              <Link to="" className="text-white hover:text-gray-300" onClick={logOut}>
                 LogOut
               </Link>
 
               : ""
-}
+          }
 
 
         </div>
