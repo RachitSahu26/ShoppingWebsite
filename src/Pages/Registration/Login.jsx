@@ -34,7 +34,7 @@ const Login = () => {
       const result = await signInWithEmailAndPassword(auth, email, password)
       toast.success("Signup Succesfully");
 
-      localStorage.setItem('userdata',JSON.stringify(result));
+      localStorage.setItem('users',JSON.stringify(result));
       navigate('/')
    
     } catch (error) {
