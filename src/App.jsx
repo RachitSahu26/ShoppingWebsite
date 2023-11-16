@@ -1,4 +1,5 @@
-import DashBorad from './Pages/Admin/DashBorad';
+
+  import DashBorad from './Pages/Admin/DashBorad';
 import AllProduct from './Pages/All_product/AllProduct';
 import Cart from './Pages/Cart/Cart';
 
@@ -98,8 +99,8 @@ export default App;
 
 // .......................protected route...........
 export const protectRoute = ({ children }) => {
-  const user = localStorage.getItem('userdata')
-  if (user) {
+  const userss = localStorage.getItem('users')
+  if (userss) {
     return children
   }
   else {
@@ -114,7 +115,7 @@ export const protectRoute = ({ children }) => {
 
 // .......................protected route...........
 export const protectRouteForAdmin = ({ children }) => {
-  const admin = JSON.parse(localStorage.getItem('userdata'))
+  const admin = JSON.parse(localStorage.getItem('users'))
   if (admin.user.email === "rachitsahu016@gmail.com") {
     return children
   }

@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 
 
-const users = JSON.parse(localStorage.getItem("userdata"))
+const users = JSON.parse(localStorage.getItem("users"))
 // ...........................logout ..............
 
 const logOut = () => {
@@ -36,6 +36,7 @@ function NavBar() {
           <Link to="/cart" className="text-white hover:text-gray-300">Cart</Link>
 
           {
+
             users?.user?.email === "rachitsahu24@gmail.com" ?
               <Link to="/order" className="text-white hover:text-gray-300">Order</Link>
               : ""
@@ -53,16 +54,14 @@ function NavBar() {
                 Admin</Link> : ""}
 
           {
-            users ?
-              <Link to="" className="text-white hover:text-gray-300" onClick={logOut}>
+            users?
+             
+            <Link to="" className="text-white hover:text-gray-300" onClick={logOut}>
                 LogOut
               </Link>
 
-              : <Link to="/login" className="text-white hover:text-gray-300">
-                LogIn
-              </Link>
-          }
-
+              : ""
+}
 
 
         </div>
