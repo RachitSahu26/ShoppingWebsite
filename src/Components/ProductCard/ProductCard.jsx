@@ -1,9 +1,32 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import myContext from '../../Contexts/Data/MyContext'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+import { addToCart } from '../../Redux/Slice/CartSlice'
 
 function ProductCard() {
     const context = useContext(myContext)
     const { mode, product } = context
+
+
+    const dispatch = useDispatch()
+    const cartItem = useSelector((state) => state.cart)
+
+
+
+    const addCartItem = (product) => {
+        dispatch(addToCart(product));
+        toast.success("Cart Successfully added")
+        console.log(cartItem);
+    }
+
+
+
+
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cartItem));
+    }, [cartItem])
     return (
         <section className="text-gray-600 body-font">
             <div className="container px-5 py-8 md:py-16 mx-auto">
@@ -20,8 +43,8 @@ function ProductCard() {
 
                     {
                         product.map((item, index) => {
-                            
-                            const { title, price, imageUrl, category, description, date } = item;
+
+                            const { id,title, price, imageUrl, category, description, date } = item;
                             return (
                                 <div className="p-4 md:w-1/4  drop-shadow-lg " >
                                     <div className="h-full border-2 hover:shadow-gray-100 hover:shadow-2xl transition-shadow duration-300 ease-in-out    border-gray-200 border-opacity-60 rounded-2xl overflow-hidden" style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '', }} >
@@ -34,7 +57,10 @@ function ProductCard() {
                                             {/* <p className="leading-relaxed mb-3">{item.description.}</p> */}
                                             <p className="leading-relaxed mb-3" style={{ color: mode === 'dark' ? 'white' : '' }}>₹ {price}</p>
                                             <div className=" flex justify-center">
-                                                <button type="button" className="focus:outline-none text-white bg-pink-600 hover:bg-pink-700 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm w-full  py-2">Add To Cart</button>
+                                                <button type="button" className="focus:outline-none
+                                                 text-white bg-pink-600 hover:bg-pink-700 focus:ring-4
+                                                  focus:ring-purple-300 font-medium rounded-lg text-sm w-full
+                                                    py-2"  onClick={()=>addCartItem(item)}>Add To Cart</button>
 
                                             </div>
                                         </div>
