@@ -1,7 +1,8 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify';
-
+import { FaShoppingCart } from 'react-icons/fa';
 
 
 
@@ -15,9 +16,13 @@ const logOut = () => {
 }
 
 function NavBar() {
+
+
+const cartItem = useSelector((state) => state.cart)
+
   return (
 
-
+    
 
     <nav className="bg-gray-800 p-4 " >
       <div className="container mx-auto flex items-center justify-between">
@@ -30,6 +35,10 @@ function NavBar() {
 
         </div>
         <div className="hidden sm:flex space-x-4">
+
+
+
+
           <Link to="/" className="text-white hover:text-gray-300">Home</Link>
 
           <Link to="/allproduct" className="text-white hover:text-gray-300">All Product</Link>
@@ -64,7 +73,30 @@ function NavBar() {
           }
 
 
+
+
+
+
+
+
+
+
+
+          <div className="relative">
+            <FaShoppingCart className="h-8 w-8 text-blue-500" />
+
+            {/* Notification badge */}
+            <div className="absolute top-0 right-0 h-4 w-4 bg-red-500 rounded-full flex items-center justify-center text-white">
+              <span className="text-xs font-semibold">{cartItem.length
+              }</span>
+            </div>
+          </div>
         </div>
+
+
+
+
+
         <div className="sm:hidden">
           <button className="text-red">
             <svg
