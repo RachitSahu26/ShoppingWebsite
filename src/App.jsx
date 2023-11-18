@@ -20,7 +20,7 @@ import UpdateProduct from './Pages/Admin/page/UpdateProduct';
 // import ProductCard from './Components/ProductCard/ProductCard';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Children } from 'react';
+import { children } from 'react';
 function App() {
   return (
 

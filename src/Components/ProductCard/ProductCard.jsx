@@ -27,6 +27,10 @@ function ProductCard() {
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cartItem));
     }, [cartItem])
+
+
+
+    
     return (
         <section className="text-gray-600 body-font">
             <div className="container px-5 py-8 md:py-16 mx-auto">
