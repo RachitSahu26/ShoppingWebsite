@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import LayOut from '../../Components/LayOut/LayOut';
 import { toast } from 'react-toastify';
 import { removeToCart } from '../../Redux/Slice/CartSlice';
+import Modal from '../../Components/Model/Model';
+
+// import Modal from '../../Components/Model/Model';
 // replace with your actual action import
 
 function Cart() {
@@ -27,7 +30,7 @@ function Cart() {
   const [totalAmount, setTotalAmount] = useState(0);
   useEffect(() => {
     let temp = 0;
-  cartItem.forEach((cartItem) => {
+    cartItem.forEach((cartItem) => {
       temp = temp + parseInt(cartItem.price)
     })
     setTotalAmount(temp);
@@ -38,6 +41,21 @@ function Cart() {
   const grandTotal = shipping + totalAmount
 
 
+
+
+
+
+  // ..........................model functionality.........................
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <LayOut>
       <div className="h-screen bg-red-100 pt-5 " style={{ backgroundColor: mode === 'dark' ? '#487be0' : '', color: mode === 'dark' ? 'white' : '' }}>
@@ -81,7 +99,7 @@ function Cart() {
 
             <div className="flex justify-between">
               <p className="text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>Shipping</p>
-              <p className="text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>₹{ shipping}</p>
+              <p className="text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>₹{shipping}</p>
             </div>
 
             <hr className="my-4" />
@@ -97,15 +115,20 @@ function Cart() {
 
 
             {/* <Modal  /> */}
+
             <button
               type="button"
               className="w-full  bg-violet-600 py-2 text-center rounded-lg text-white font-bold "
-            >
+          
+          
+              onClick={openModal}>
               Buy Now
             </button>
+     
 
+            <Modal isOpen={isModalOpen} onClose={closeModal} />
 
-
+        
           </div>
 
 
