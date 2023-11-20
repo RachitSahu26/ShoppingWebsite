@@ -1,8 +1,19 @@
 // Modal.js
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
 
-const Modal = ({ isOpen, onClose }) => {
+import React, { useState } from 'react';
+
+
+const Modal = ({ buyNow,
+  isOpen,
+  onClose,
+  fullName,
+  setFullName,
+  fullAddress,
+  setFullAddress,
+  pin,
+  setPin,
+  mobile,
+  setMobile }) => {
   if (!isOpen) return null;
 
   const handleSubmit = (e) => {
@@ -13,59 +24,13 @@ const Modal = ({ isOpen, onClose }) => {
   };
 
 
-// .............................................buy now funtionality...........
- 
-const [fullName,setFullName] =useState('')
-const [fullAddress,setFullAddress]=useState('')
-const [pin,setPin]=useState('')
-const [mobile,setMobile]=useState('')
-// const [fullName]
-
-
-const buyNow= async()=>{
-
-// .............validation..............
-if(fullName==="" ||fullAddress==="" ||pin==="" ||mobile===""  ){
-return toast.error("all Fields are required")
+  // .............................................buy now funtionality...........
 
 
 
+  // const [fullName]
 
 
-
-
-
-
-
-// ............................address Info............
-const addressInfo = {
-  name,
-  address,
-  pincode,
-  phoneNumber,
-  date: new Date().toLocaleString(
-    "en-US",
-    {
-      month: "short",
-      day: "2-digit",
-      year: "numeric",
-    }
-  )
-}
-
-
-// ...................code provided by razor pay.............. 
-
-
-
-
-
-
-
-
-
-}
-  }
 
 
   return (
@@ -95,6 +60,8 @@ const addressInfo = {
                   Enter Full Name
                 </label>
                 <input
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
                   type="name"
                   name="name"
                   id="name"
@@ -107,6 +74,8 @@ const addressInfo = {
                   Enter Full Address
                 </label>
                 <input
+                  value={fullAddress}
+                  onChange={(e) => setFullAddress(e.target.value)}
                   type="text"
                   name="address"
                   id="address"
@@ -119,6 +88,9 @@ const addressInfo = {
                   Enter Pincode
                 </label>
                 <input
+
+                  value={pin}
+                  onChange={(e) => setPin(e.target.value)}
                   type="text"
                   name="pincode"
                   id="pincode"
@@ -131,6 +103,9 @@ const addressInfo = {
                   Enter Mobile Number
                 </label>
                 <input
+
+                  value={mobile}
+                  onChange={(e) => setMobile(e.target.value)}
                   type="text"
                   name="mobileNumber"
                   id="mobileNumber"
@@ -138,13 +113,13 @@ const addressInfo = {
                   required
                 />
               </div>
-             
+
             </form>
           </div>
           <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
             <button
               type="button"
-              onClick={buyNow}
+              onClick={()=>buyNow()}
               className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-violet-600 text-base font-medium text-white hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 sm:ml-3 sm:w-auto sm:text-sm"
             >
               Order Now
