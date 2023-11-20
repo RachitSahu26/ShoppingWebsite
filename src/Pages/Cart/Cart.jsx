@@ -5,7 +5,8 @@ import LayOut from '../../Components/LayOut/LayOut';
 import { toast } from 'react-toastify';
 import { removeToCart } from '../../Redux/Slice/CartSlice';
 import Modal from '../../Components/Model/Model';
-
+import { addDoc, collection } from 'firebase/firestore';
+import { fireDB } from '../../FireBase/FirBase';
 // import Modal from '../../Components/Model/Model';
 // replace with your actual action import
 
@@ -56,6 +57,144 @@ function Cart() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  // ..................................razor Payment..................
+
+  const [fullName, setFullName] = useState('')
+  const [fullAddress, setFullAddress] = useState('')
+  const [pin, setPin] = useState('')
+  const [mobile, setMobile] = useState('')
+
+  const buyNow = async () => {
+
+    // .............validation..............
+    if (fullName === "" || fullAddress === "" || pin === "" || mobile === "") {
+      return toast.error("all Fields are required")
+
+
+
+
+
+
+    }
+
+
+
+
+    // ............................address Info............
+    const addressInfo = {
+      fullName,
+      fullAddress,
+      pin,
+      mobile,
+
+      date: new Date().toLocaleString(
+        "en-US",
+        {
+          month: "short",
+          day: "2-digit",
+          year: "numeric",
+        }
+      )
+    }
+
+
+    // ...................code provided by razor pay.............. 
+
+
+
+    var options = {
+      key: "",
+      key_secret: "",
+      amount: parseInt(grandTotal * 100),
+      currency: "INR",
+      order_receipt: 'order_rcptid_' + name,
+      name: "E-Bharat",
+      description: "for testing purpose",
+      handler: function (response) {
+          console.log(response)
+          toast.success('Payment Successful')
+     
+     
+     
+     
+     
+     
+     
+     
+
+
+    const orderInfo = {
+      cartItem,
+        addressInfo,
+        date: new Date().toLocaleString(
+          "en-US",
+          {
+            month: "short",
+            day: "2-digit",
+            year: "numeric",
+          }
+        ),
+        email: JSON.parse(localStorage.getItem("users")).user.email,
+        userid: JSON.parse(localStorage.getItem("users")).user.uid,
+        paymentId
+      }
+
+
+      try {
+
+
+        const orderRef = collection(fireDB, "orderDetail");
+        addDoc(orderRef, orderInfo)
+toast.success("payment success ful")
+
+      }
+      catch (error) {
+        console.log(error)
+      }
+
+
+     
+     
+     
+     
+     
+     
+        },
+  
+      theme: {
+          color: "#3399cc"
+      }
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
+
+
+
+
   return (
     <LayOut>
       <div className="h-screen bg-red-100 pt-5 " style={{ backgroundColor: mode === 'dark' ? '#487be0' : '', color: mode === 'dark' ? 'white' : '' }}>
@@ -119,16 +258,29 @@ function Cart() {
             <button
               type="button"
               className="w-full  bg-violet-600 py-2 text-center rounded-lg text-white font-bold "
-          
-          
+
+
               onClick={openModal}>
               Buy Now
             </button>
-     
 
-            <Modal isOpen={isModalOpen} onClose={closeModal} />
 
-        
+            <Modal 
+               isOpen={isModalOpen}
+            onClose={closeModal}
+            fullName={fullName}
+            setFullName={setFullName}
+            fullAddress={fullAddress}
+            setFullAddress={setFullAddress}
+            pin={pin}
+            setPin={setPin}
+            mobile={mobile}
+            setMobile={setMobile} // Make sure you are passing the correct function here
+            buyNow={buyNow}
+            
+            />
+
+
           </div>
 
 
